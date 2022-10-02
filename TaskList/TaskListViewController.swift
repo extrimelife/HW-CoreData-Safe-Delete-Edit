@@ -126,7 +126,7 @@ extension TaskListViewController {
         let taskList = taskList[indexPath.row]
         let alert = UIAlertController(title: "Edit Task", message: "Do you want edit?", preferredStyle: .alert)
         let editAction = UIAlertAction(title: "Edit", style: .default) { [unowned self] _ in
-            guard let task = alert.textFields?.first?.text else { return }
+            guard let task = alert.textFields?.first?.text, !task.isEmpty else { return }
             viewContext.name = task
             taskList.setValue(viewContext.name, forKey: "title")
             StorageManager.shared.saveContext()
